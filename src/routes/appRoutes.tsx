@@ -3,6 +3,9 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-d
 import Login from "../pages/Login.tsx";
 import Dashboard from "../pages/Dashboard.tsx";
 import PrivateRoute from "./privateRoute.tsx";
+import Layout from "../components/Layout.tsx";
+import Profile from "../pages/Profile.tsx";
+import Analytics from "../pages/Analytics.tsx";
 
 export default function AppRoutes() {
   return (
@@ -10,7 +13,11 @@ export default function AppRoutes() {
       <Routes>
         <Route path="/login" element={<Login />} />
         <Route element={<PrivateRoute />}>
-          <Route path="/" element={<Dashboard />} />
+          <Route element={<Layout />}>
+            <Route path="/" element={<Dashboard />} />
+            <Route path="/profile" element={<Profile />} />
+            <Route path="/analytics" element={<Analytics />} />
+          </Route>
         </Route>
         <Route path="*" element={<Navigate to="/login" />} />
       </Routes>
