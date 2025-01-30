@@ -1,5 +1,12 @@
 import React from "react";
-import { SidebarContainer, SidebarNavLink } from "../styles/DashboardStyles.ts";
+import { FaTimes } from "react-icons/fa";
+import {
+  SidebarContainer,
+  SidebarNavLinks,
+  SidebarNavLink,
+  CloseButton,
+} from "../styles/DashboardStyles.ts";
+import { useSidebarStore } from "../state/sidebarStore.ts";
 
 const sidebarLinks = [
   { path: "/", label: "Home" },
@@ -7,11 +14,15 @@ const sidebarLinks = [
   { path: "/analytics", label: "Analytics" },
 ];
 
-export default function Sidebar() {
+const Sidebar = () => {
+  const { isOpen, closeSidebar } = useSidebarStore();
+
   return (
-    <SidebarContainer>
-      <h2>Dashboard</h2>
-      <nav>
+    <SidebarContainer isOpen={isOpen}>
+      <CloseButton onClick={closeSidebar}>
+        <FaTimes />
+      </CloseButton>
+      <SidebarNavLinks>
         {sidebarLinks.map(({ path, label }) => (
           <SidebarNavLink
             key={path}
@@ -21,7 +32,9 @@ export default function Sidebar() {
             {label}
           </SidebarNavLink>
         ))}
-      </nav>
+      </SidebarNavLinks>
     </SidebarContainer>
   );
-}
+};
+
+export default Sidebar;
