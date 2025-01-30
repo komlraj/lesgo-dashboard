@@ -10,6 +10,9 @@ export default function Header() {
   const handleLogout = () => {
     logout();
     navigate("/login");
+    if (localStorage.getItem("userProfile")) {
+      localStorage.removeItem("userProfile");
+    }
   };
 
   return (
