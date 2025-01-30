@@ -6,12 +6,15 @@ export const LayoutContainer = styled.div`
   display: flex;
   height: 100vh;
   width: 100%;
+  background: ${({ theme }) => theme.bodyBg};
+  color: ${({ theme }) => theme.textColor};
+  transition: background 0.3s ease-in-out, color 0.3s ease-in-out;
 `;
 
 // Sidebar Styling
 export const SidebarContainer = styled.nav<{ isOpen: boolean }>`
-  background-color: #222831;
-  color: white;
+  background-color: ${({ theme }) => theme.sidebarBg};
+  color: ${({ theme }) => theme.sidebarText};
   display: ${({ isOpen }) => (isOpen ? "block" : "none")};
   width: 250px;
   height: 100vh;
@@ -39,7 +42,7 @@ export const SidebarNavLinks = styled.div`
 `;
 
 export const SidebarNavLink = styled(NavLink)`
-  color: white;
+  color: ${({ theme }) => theme.sidebarText};
   font-weight: 500;
   text-decoration: none;
   padding: 12px 15px;
@@ -50,10 +53,10 @@ export const SidebarNavLink = styled(NavLink)`
 
   background: transparent;
   &:hover {
-    background: #9f725a;
+    background: ${({ theme }) => theme.buttonBg};
   }
   &.active {
-    background: #f47838;
+    background: ${({ theme }) => theme.buttonBg};
   }
 `;
 
@@ -70,6 +73,56 @@ export const CloseButton = styled.button`
 
   @media (max-width: 768px) {
     display: block;
+  }
+`;
+
+/* Theme Toggle Wrapper */
+export const ThemeToggleWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  gap: 4px;
+  bottom: 30px;
+  width: calc(100% - 20px);
+  padding: 10px;
+`;
+
+/* Theme Toggle Switch */
+export const ThemeSwitchLabel = styled.label`
+  font-size: 16px;
+  cursor: pointer;
+`;
+
+export const ThemeSwitch = styled.input.attrs({ type: "checkbox" })`
+  width: 40px;
+  height: 20px;
+  appearance: none;
+  background: ${({ theme }) => theme.buttonBg};
+  border-radius: 10px;
+  position: relative;
+  outline: none;
+  cursor: pointer;
+  transition: background 0.3s ease-in-out;
+
+  &:checked {
+    background: ${({ theme }) => theme.buttonBg};
+  }
+
+  &::before {
+    content: "";
+    position: absolute;
+    width: 18px;
+    height: 18px;
+    background: ${({ theme }) => theme.buttonText};
+    border-radius: 50%;
+    top: 1px;
+    left: 2px;
+    transition: transform 0.3s ease-in-out;
+  }
+
+  &:checked::before {
+    transform: translateX(20px);
   }
 `;
 

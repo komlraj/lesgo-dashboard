@@ -27,8 +27,8 @@ const Analytics = () => {
       {
         label: "Sales in USD",
         data: [50, 75, 60, 90, 120, 80, 100],
-        backgroundColor: "rgba(54, 162, 235, 0.6)",
-        borderColor: "rgba(54, 162, 235, 1)",
+        backgroundColor: "#f09465",
+        borderColor: "#f09465",
         borderWidth: 1,
       },
     ],
